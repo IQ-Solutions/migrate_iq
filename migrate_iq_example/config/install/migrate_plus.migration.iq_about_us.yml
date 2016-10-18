@@ -1,0 +1,41 @@
+# Migration configuration for products.
+id: iq_about_us_example
+label: About Us Example
+migration_group: iq_content_example
+source:
+  track_changes: true
+  plugin: iqxml
+  path: migrate_iq_example/data/About_Us.xml
+  fields:
+    title:
+      selector: title
+      label: 'Title of content'
+    body:
+      selector: body_content
+      label: 'Content'
+  # Under 'ids', we identify source fields populated above which will uniquely
+  # identify each imported item. The 'type' makes sure the migration map table
+  # uses the proper schema type for stored the IDs.
+  keys:
+    - title
+
+destination:
+  plugin: entity:node
+
+process:
+  type:
+    plugin: default_value
+    default_value: page
+
+  title: title
+  body/value: body
+  body/format:
+    plugin: default_value
+    default_value: full_html
+
+  sticky:
+    plugin: default_value
+    default_value: 0
+  uid:
+    plugin: default_value
+    default_value: 0

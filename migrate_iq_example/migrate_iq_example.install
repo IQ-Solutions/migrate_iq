@@ -1,0 +1,22 @@
+<?php
+
+/**
+ * @file
+ * NIAMS About us Migration install file.
+ */
+
+/**
+ * Implements hook_uninstall().
+ */
+function migrate_iq_example_uninstall() {
+	// Delete his module's migrations.
+	
+	$migrations = [
+		'iq_about_us',
+	];
+	
+	foreach($migrations as $migration) {
+		Drupal::configFactory()->getEditable('migrate_plus.migration.'
+		                                     .$migration)->delete();
+	}
+}
