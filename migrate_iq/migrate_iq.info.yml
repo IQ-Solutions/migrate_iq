@@ -1,0 +1,7 @@
+type: module
+name: IQ Migrate Data
+description: 'Migrates content into a Drupal 8 install.'
+package: Migration
+core: 8.x
+dependencies:
+  - migrate_plus
